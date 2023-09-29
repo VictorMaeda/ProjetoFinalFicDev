@@ -18,8 +18,8 @@ const [token, setToken] = useState(sessionStorage.getItem("token"))
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Login />} />
-          <Route path='/Plantoes' element={<Plantoes />}/>
-         // <Route path='/Plantoes' element={token ? <Plantoes /> : <Navigate to={'/'} />} />
+          <Route path='/Plantoes' element={ <Plantoes />  } />
+          {/* <Route path='/Plantoes' element={token ? <Plantoes /> : <Navigate to={'/'} />} /> */}
           <Route path='/Enfermeiros' element={<Enfermeiros />} />Sobre
           <Route path='/DashBoard' element={<DashBoard />} />
           <Route path='/sobre' element={<Sobre />} />
