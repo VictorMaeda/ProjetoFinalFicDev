@@ -1,0 +1,41 @@
+/* Estilize o container LoginBody */
+.LoginBody {
+  position: relative; /* Alterado para relativo para que os elementos filhos respeitem o fluxo normal */
+  max-width: 80%;
+  max-height: 80%;
+  margin: 0 auto;
+  transform: translate(0%, 15%); /* Mantido o deslocamento vertical */
+}
+
+/* Estilize a imagem */
+.LoginImage {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.errosLogin {
+  top: 0px;
+  line-height: 3px;
+}
+
+/* Estilize o alerta para que sobreponha outros elementos */
+/* Estilize o alerta para que sobreponha outros elementos e tenha uma cor de fundo translúcida */
+/* Estilize o alerta para que sobreponha outros elementos e tenha uma cor de fundo translúcida */
+.w-100.custom-alert {
+  position: absolute;
+  z-index: 9999;
+  width: 60%;
+  min-height: 5%;
+  left: 0;
+  display: flex; /* Use flexbox para centralizar o conteúdo */
+  flex-direction: column; /* Alinhe o conteúdo verticalmente */
+  justify-content: center; /* Centralize verticalmente */
+  align-items: center; /* Centralize horizontalmente */
+  padding: 2px;
+  padding-top: 10px;
+}
+
+
+
+ 

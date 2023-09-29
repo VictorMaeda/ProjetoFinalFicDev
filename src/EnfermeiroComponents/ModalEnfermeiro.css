@@ -1,0 +1,69 @@
+/* ModalEnfermeiro.css */
+.EnfermeiroCustomModal {
+  width: 100%;
+  margin: 5% auto 0; /* Posicione o modal mais para baixo definindo uma margem superior de 80px */
+}
+
+.custom-button {
+  background-color: #68FFA6; /* Cor de fundo do botão padrão */
+  color: #000000; /* Cor do texto */
+  border: 2px solid #5FB832; /* Cor do contorno do botão */
+
+  /* Transição suave para suavizar a mudança de cor */
+  transition: background-color 0.3s ease;
+
+  /* Definir a cor de fundo quando o mouse passar por cima */
+  &:hover {
+    background-color: #52ce3a; /* Cor de fundo do botão quando hover */
+    border: 2px solid #5FB832; /* Cor do contorno do botão */
+  }
+}
+
+.custom-modal-body {
+  display: flex;
+  flex-direction: column; /* Alinhe os elementos verticalmente */
+  gap: 10px; /* Espaço entre os elementos */
+}
+
+.custom-modal-body input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Estilos para o <select> */
+select {
+  width: 100%; /* Para ocupar a largura total do seu contêiner */
+  padding: 8px; /* Espaçamento interno semelhante ao dos inputs */
+  font-size: 16px; /* Tamanho da fonte */
+  border: 1px solid #ccc; /* Borda semelhante à dos inputs */
+  border-radius: 4px; /* Cantos arredondados semelhantes aos dos inputs */
+  outline: none; /* Remover a borda quando o elemento estiver em foco */
+  transition: border-color 0.2s ease; /* Animação suave da cor da borda */
+}
+
+/* Ajuste o tamanho do modal e do dialog */
+.EnfermeiroCustomModal .modal {
+  max-width: 800px; /* Largura máxima do modal */
+  margin: 80px auto 0; /* Posicione o modal mais para baixo definindo uma margem superior de 80px */
+}
+
+/* Ajuste o tamanho do modal-content */
+.EnfermeiroCustomModal .modal-content {
+  height: 600px; /* Altura fixa de 600 pixels para o modal-content */
+  width: 100%;
+}
+
+/* Estilo para o alerta */
+.custom-alert {
+  margin-bottom: 0; /* Remova o espaçamento vertical abaixo do alerta */
+}
+/* CSS para estilizar labels nesta página */
+label {
+  font-weight: bold; /* Define a fonte em negrito */
+  color: #333; /* Define a cor do texto */
+  margin-bottom: 5px; /* Adiciona espaço entre os labels e os elementos de entrada */
+  display: block; /* Faz com que os labels sejam exibidos em uma nova linha */
+}

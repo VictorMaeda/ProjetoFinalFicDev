@@ -1,0 +1,27 @@
+    /* TabelaPlantoes.css */
+
+    /* Remove margens e preenchimentos padrão da tabela */
+    .table-plantoes {
+        margin: 0;
+        padding: 0;
+        border-collapse: collapse;
+        width: 60%;
+    }
+    
+    /* Estilos para células de cabeçalho */
+    .table-plantoes th {
+        padding: 8px;
+        text-align: left;
+    }
+    
+    /* Estilos para células de dados */
+    .table-plantoes td {
+        padding: 8px;
+        text-align: left;
+    }
+
+/* Estilo para linhas de plantões selecionados */
+.plantaoSelecionado {
+    background-color: rgb(230, 173, 173); /* Escolha a cor de fundo desejada */
+  }
+  

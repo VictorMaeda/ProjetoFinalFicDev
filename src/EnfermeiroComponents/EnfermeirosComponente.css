@@ -1,0 +1,25 @@
+body{
+    text-align: center;
+    align-items: center;
+}
+
+/* Escalados.css */
+
+.EnfermeirosTable {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    overflow-y: auto;
+  }
+  
+  .EnfermeirosTable th,
+  .EnfermeirosTable td {
+    text-align: center;
+    padding: 8px; /* Ajuste o espaçamento interno conforme necessário */
+  }
+  
+  .EnfermeirosTable th {
+    border-bottom: 1px solid #000000; /* Reduz o tamanho da borda inferior */
+    overflow-y: auto;
+  }
+  

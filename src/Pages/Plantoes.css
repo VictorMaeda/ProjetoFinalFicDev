@@ -1,0 +1,25 @@
+/* Plantoes.css */
+
+/* Aplicar margem nos dois lados da página toda */
+
+  
+  /* Estilize o contêiner principal */
+  .content-container {
+    display: flex;
+    margin-right: 30px;
+    margin-left: 30px; /* Centraliza horizontalmente */
+  }
+  
+  .tabela {
+    flex-grow: 1; /* Permite que a tabela cresça e ocupe o espaço disponível */
+    top: 10%;
+  }
+  
+  
+  /* Estilos para o retângulo à direita */
+.TituloPlantao{
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}

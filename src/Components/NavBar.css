@@ -1,0 +1,11 @@
+.botaoSair{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+.logo{
+    width: 150px;
+}
+.navBarGeral{
+    bottom: 10%;
+}

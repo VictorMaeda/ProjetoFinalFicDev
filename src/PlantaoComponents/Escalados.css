@@ -1,0 +1,53 @@
+body{
+    text-align: center;
+    align-items: center;
+}
+.rectangle {
+    width: 60%; /* Largura do retângulo */
+    height: 100%; /* Altura do retângulo */
+    background-color: #68FFA6; /* Cor de fundo do retângulo */
+    margin-left: auto; /* Alinha o retângulo à direita */
+    border-radius: 20px;
+  }
+/* Escalados.css */
+
+.tabelaEscalados {
+    width: 100%;
+    border-collapse: collapse;/*  */
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+  }
+  
+  .tabelaEscalados td {
+    text-align: center;
+    padding: 8px; /* Ajuste o espaçamento interno conforme necessário */
+    overflow-y: auto;
+  }
+  .tabelaEscalados th {
+    border-bottom: 1px solid #000000; /* Reduz o tamanho da borda inferior */
+    text-align: center;
+    padding: 8px;
+  }
+  .plantaoAtivo {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    margin: 0 auto;
+  }
+  .plantaoAtivo h3 {
+    margin-right: 20px; /* Espaço à direita do elemento h3 */
+  }
+  
+  .plantaoAtivo Button {
+    margin-left: 20px; /* Espaço à esquerda do botão */
+  }
+  
+  /* Estilize outros elementos da tabela conforme necessário */
+  .excluirEscalado{
+    border: none;
+    background-color: transparent;
+  }
+
+  .box-table{
+    max-height: 600px;
+    overflow-y: auto;
+  }
