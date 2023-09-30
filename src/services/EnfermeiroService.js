@@ -28,7 +28,6 @@ export async function EnfermeiroPlantoes(id){
     const lista = await api.get(`/enfermeiro/buscar/plantoes/${id}`);
     return lista;
 }
-
 export async function removerEnfermeiroPlantao(id){
 await api.delete(`removerPlantao/${idPlantao}/${idEnfermeiro}`);
 }

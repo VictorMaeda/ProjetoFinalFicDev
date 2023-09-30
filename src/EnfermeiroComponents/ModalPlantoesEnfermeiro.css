@@ -1,3 +1,7 @@
 .ModalPlantoesEnfermeiroBody{
     max-width: 20%;
 }
+
+.tabelaEnfermeiroPlantoes{
+    justify-content: center;
+}

@@ -24,7 +24,7 @@ function Enfermeiros() {
   const [pesquisa, setPesquisa] = useState("");
   const [inputChanges, setInputChanges] = useState(0); // Contador de mudanças no input
   const [modalShow, setModalShow] = useState(false);
-
+  const [enfermeiroPlantoes, setEnfermeiroPlantoes] = useState(null);
   useEffect(() => {
     fetchEnfermeiros();
   }, []);
@@ -38,13 +38,27 @@ function Enfermeiros() {
   }
 
   const handleShowPut = (enfermeiro) => {
-    sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJUb2tlbkdlcmVuY2lhZG9yIiwic3ViIjoidmljdG9yQGdtYWlsLmNvbSIsImV4cCI6MTY5NTE1OTEzNH0.eXWTskQeGc9CBEhIRjqfj7eeXOjb2kN5og3cuk21RWM")
     setNomeEnfermeiro(enfermeiro.nome);
     setCorenEnfermeiro(enfermeiro.coren);
     setNivelEnfermeiro(enfermeiro.enfermeiroTecnico);
     setIdEnfermeiro(enfermeiro.idEnfermeiro);
     setverbo("Edição");
     setShow(true);
+  }
+  async function fetchPlantoes() {
+    try {
+      const response = await EnfermeiroPlantoes(idEnfermeiro);
+      const dados = response.data;
+      console.log(dados)
+      setLista(dados);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function modalPlantoes(id){
+    setIdEnfermeiro(id);
+    fetchPlantoes(id);
+    setModalShow(true);
   }
 
   async function fetchEnfermeiros() {
@@ -135,7 +149,7 @@ function Enfermeiros() {
               <thead>
                 <tr>
                   <th>Nome</th>
-                  <th>Enfermeiro Técnico</th>
+                  <th>Nível</th>
                   <th>COREN</th>
                   <th>Plantões</th>
                   <th></th>
@@ -147,7 +161,7 @@ function Enfermeiros() {
                     <td>{enfermeiro.nome}</td>
                     <td>{enfermeiro.enfermeiroTecnico}</td>
                     <td>{enfermeiro.coren}</td>
-                    <td><button className='btn btn btn-primary' onClick={() => setModalShow(true)}>Listar</button> </td>
+                    <td><button className='btn btn btn-primary' onClick={() => modalPlantoes(enfermeiro.idEnfermeiro)}>Listar</button> </td>
                     <td>
                       <button onClick={() => handleShowPut(enfermeiro)} className='border-0 bg-transparent'>
                         <Pen size={22} />
