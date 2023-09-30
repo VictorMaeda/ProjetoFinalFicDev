@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import './Enfermeiros.css';
-import { getEnfermeiros, deletarEnfermeiro, pesquisarEnfermeiros } from '../services/EnfermeiroService';
+import { getEnfermeiros, deletarEnfermeiro, pesquisarEnfermeiros, EnfermeiroPlantoes } from '../services/EnfermeiroService';
 import Button from 'react-bootstrap/Button';
 import ModalEnfermeiro from '../EnfermeiroComponents/ModalEnfermeiro';
 import ColorSchemesExample from '../Components/ColorSchemesExample';
@@ -24,7 +24,7 @@ function Enfermeiros() {
   const [pesquisa, setPesquisa] = useState("");
   const [inputChanges, setInputChanges] = useState(0); // Contador de mudanças no input
   const [modalShow, setModalShow] = useState(false);
-  const [enfermeiroPlantoes, setEnfermeiroPlantoes] = useState(null);
+  const [enfermeiroListaPlantoes, setEnfermeiroListaPlantoes] = useState(null);
   useEffect(() => {
     fetchEnfermeiros();
   }, []);
@@ -45,19 +45,21 @@ function Enfermeiros() {
     setverbo("Edição");
     setShow(true);
   }
-  async function fetchPlantoes() {
-    try {
-      const response = await EnfermeiroPlantoes(idEnfermeiro);
-      const dados = response.data;
-      console.log(dados)
-      setLista(dados);
-    } catch (error) {
-      console.log(error);
-    }
+  function fetchPlantoes(id) {
+    EnfermeiroPlantoes(id)
+      .then((response) => {
+        const dados = response.data;
+        setEnfermeiroListaPlantoes(dados);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
+  
+
   function modalPlantoes(id){
+    fetchPlantoes(id); 
     setIdEnfermeiro(id);
-    fetchPlantoes(id);
     setModalShow(true);
   }
 
@@ -190,6 +192,8 @@ function Enfermeiros() {
       <ModalPlantoesEnfermeiro
         show={modalShow}
         close={() => setModalShow(false)}
+        idEnfermeiro={idEnfermeiro}
+        enfermeiroPlantoes={enfermeiroListaPlantoes}
       />
     </>
   );

@@ -1,7 +1,28 @@
-.ModalPlantoesEnfermeiroBody{
-    max-width: 20%;
+.ModalPlantoesEnfermeiroBody {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
+
+.ModalPlantoesEnfermeiroComponent{
+    top: 5%;
+}
 .tabelaEnfermeiroPlantoes{
-    justify-content: center;
+    margin: 0 auto;
+}
+.tabelaEnfermeiroPlantoes td {
+    padding-top: 10px; /* Adicionar espaço na parte superior da célula */
+    padding-left: 10px;
+}
+.Adicioneumplantao{
+    left: 5%;
+}
+.EnfermeiroPlantaoFormTotal{
+    display: block;
+}
+.EnfermeiroPlantaoFormQuest{
+    display: flex;
+}
+.ModalFooter{
+    display: block;
 }

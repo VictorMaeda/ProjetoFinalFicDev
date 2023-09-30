@@ -64,10 +64,14 @@ const Plantoes = () => {
             </div>
             <TabelaPlantoes buscarEscalados={buscarEscalados} setDataHoraPlantao={setDataHoraPlantao} findPlantoes={findPlantoes} listaPlantoes={listaPlantoes}/>
           </div>
-          <div className='col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mb-3'>
-            <Escalados lista={listaEscalados} deletarEscalado={deletarEscalado}
-              plantao={plantao} modal={ModalPlantao} />
-          </div>
+          {
+            window.innerWidth > 991 ?  
+            <div className='col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mb-3'>
+              <Escalados lista={listaEscalados} deletarEscalado={deletarEscalado}
+                plantao={plantao} modal={ModalPlantao} />
+            </div>
+            : null
+          }
         </div>
       </div>
       <ModalCadastroPlantao show={showModalPlantoes} close={() => setshowModalPlantoes(false)} findPlantoes={findPlantoes}/>

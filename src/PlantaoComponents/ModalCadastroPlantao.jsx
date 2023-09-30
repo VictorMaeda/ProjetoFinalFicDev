@@ -73,7 +73,6 @@ const ModalCadastroPlantao = ({ show, close, findPlantoes }) => {
                             </div>
                         </div>
                     </Modal.Body>
-
                     <Modal.Footer>
                         <div className='col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12 mb-3 text-end'>
                             <button onClick={save} className='btn btn-success'>Salvar</button>
