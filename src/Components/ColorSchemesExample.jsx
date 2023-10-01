@@ -31,10 +31,12 @@ function ColorSchemesExample() {
         <Container>
           <Navbar.Brand>
             <img
-              src="\SpringMed.png"
+              src="/SpringMed.png" // Use barra invertida (/) em vez de barra invertida (\) para especificar o caminho da imagem.
               className="logo"
               alt="Logo"
+              style={{ maxWidth: '200px', height: 'auto' }} // Use "style" para definir os estilos de largura e altura.
             />
+
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -43,7 +45,7 @@ function ColorSchemesExample() {
               <Nav.Link className='text-dark fs-5' href="/Enfermeiros">Enfermeiros</Nav.Link>
               <Nav.Link className='text-dark fs-5' href="/DashBoard">DashBoard</Nav.Link>
             </Nav>
-              <Nav.Link className='text-dark fs-7' href="/sobre">sobre</Nav.Link>
+            <Nav.Link className='text-dark fs-7' href="/sobre">sobre</Nav.Link>
             <button onClick={() => sair(navigate)} className='botaoSair'>
               <SignOut size={28} />
             </button>
@@ -51,7 +53,7 @@ function ColorSchemesExample() {
         </Container>
       </Navbar>
       <br />
-      </div>
+    </div>
   );
 }
 

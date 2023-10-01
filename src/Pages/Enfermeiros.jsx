@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import './Enfermeiros.css';
-import { getEnfermeiros, deletarEnfermeiro, pesquisarEnfermeiros, EnfermeiroPlantoes } from '../services/EnfermeiroService';
+import { getEnfermeiros, deletarEnfermeiro, pesquisarEnfermeiros, EnfermeiroPlantoes, removerEnfermeiroPlantao } from '../services/EnfermeiroService';
 import Button from 'react-bootstrap/Button';
 import ModalEnfermeiro from '../EnfermeiroComponents/ModalEnfermeiro';
 import ColorSchemesExample from '../Components/ColorSchemesExample';
@@ -12,7 +12,6 @@ import ModalPlantoesEnfermeiro from '../EnfermeiroComponents/ModalPlantoesEnferm
 import { Pen, TrashSimple } from '@phosphor-icons/react';
 
 function Enfermeiros() {
-  //sessionValidate();
   const [listaEnfermeiros, setListaEnfermeiros] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -25,6 +24,7 @@ function Enfermeiros() {
   const [inputChanges, setInputChanges] = useState(0); // Contador de mudanças no input
   const [modalShow, setModalShow] = useState(false);
   const [enfermeiroListaPlantoes, setEnfermeiroListaPlantoes] = useState(null);
+
   useEffect(() => {
     fetchEnfermeiros();
   }, []);
@@ -57,9 +57,10 @@ function Enfermeiros() {
   }
   
 
-  function modalPlantoes(id){
+  function modalPlantoes(id, nome){
     fetchPlantoes(id); 
     setIdEnfermeiro(id);
+    setNomeEnfermeiro(nome);
     setModalShow(true);
   }
 
@@ -114,6 +115,13 @@ function Enfermeiros() {
     fetchPesquisa();
   }, [inputChanges, pesquisa]);
 
+  async function desmarcarPlantao(idEnfermeiroRecebido, idPlantaoRecebido){
+    try{
+      await removerEnfermeiroPlantao(idEnfermeiroRecebido, idPlantaoRecebido);
+    }catch(error){
+      console.log(error);
+    }
+  }
   return (
     <>
       <ColorSchemesExample />
@@ -163,7 +171,7 @@ function Enfermeiros() {
                     <td>{enfermeiro.nome}</td>
                     <td>{enfermeiro.enfermeiroTecnico}</td>
                     <td>{enfermeiro.coren}</td>
-                    <td><button className='btn btn btn-primary' onClick={() => modalPlantoes(enfermeiro.idEnfermeiro)}>Listar</button> </td>
+                    <td><button className='btn btn btn-primary' onClick={() => modalPlantoes(enfermeiro.idEnfermeiro, enfermeiro.nome)}>Listar</button> </td>
                     <td>
                       <button onClick={() => handleShowPut(enfermeiro)} className='border-0 bg-transparent'>
                         <Pen size={22} />
@@ -178,7 +186,6 @@ function Enfermeiros() {
           </div>
         </div>
       </div>
-
       <ModalEnfermeiro
         show={show}
         handleClose={handleClose}
@@ -194,9 +201,11 @@ function Enfermeiros() {
         close={() => setModalShow(false)}
         idEnfermeiro={idEnfermeiro}
         enfermeiroPlantoes={enfermeiroListaPlantoes}
+        desmarcarPlantao={desmarcarPlantao}
+        fetchPlantoes={fetchPlantoes}
+        nome={nomeEnfermeiro}          
       />
     </>
   );
 }
-
 export default Enfermeiros;

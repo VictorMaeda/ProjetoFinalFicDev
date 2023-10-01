@@ -42,7 +42,7 @@ const ModalCadastroPlantao = ({ show, close, findPlantoes }) => {
         }catch(error){
         }
     }
-
+    
     return (
         <>
                 <Modal show={show} onHide={close}>
@@ -79,9 +79,6 @@ const ModalCadastroPlantao = ({ show, close, findPlantoes }) => {
                         </div>
                     </Modal.Footer>
                 </Modal>
-
-
-
         </>
     )
 }

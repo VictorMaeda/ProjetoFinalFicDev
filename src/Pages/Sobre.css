@@ -1,0 +1,35 @@
+.Logos{
+    /* Defina uma media query para uma largura máxima de 768 pixels */
+@media screen and (max-width: 768px) {
+    width: 270px;
+    .sua-classe {
+        width: 370px; /* Por exemplo, defina a largura para 300 pixels */
+    }
+}
+
+    height: auto;
+}
+.SobreBody{
+    justify-content: center;
+}
+.GitHub{
+    width: 100%;
+    height: auto;
+}
+/* a {
+    width: 100px; /* Largura padrão */
+  }
+  
+  /* Estilos para telas menores (exemplo: telas com largura menor que 768px) */
+  @media (max-width: 768px) {
+    a {
+      width: 70px; /* Largura reduzida para telas menores */
+    }
+  } */
+
+.contatos{
+    justify-content: center;
+    margin: 0 auto;
+    display: flex;
+    height: 20%;
+}

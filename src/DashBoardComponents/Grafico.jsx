@@ -22,8 +22,15 @@ const Grafico = () => {
 
   useEffect(() => {
     async function fetchData() {
+      const dataAtual = new Date();
+      const diaAtual = String(dataAtual.getDate()).padStart(2, '0');
+      const mesAtual = String(dataAtual.getMonth() + 1).padStart(2, '0');
+      const anoAtual = dataAtual.getFullYear();
+      const dia = `${anoAtual}-${mesAtual}-${diaAtual}`;
+
+
       try {
-        var response = await findSemanaData();
+        var response = await findSemanaData(dia);
         response = response.data;
       } catch (error) {
         console.log(error);

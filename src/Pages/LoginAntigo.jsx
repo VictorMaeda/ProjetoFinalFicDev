@@ -1,38 +1,16 @@
 import { useState } from "react";
+import * as Components from "./LoginEstilo";
+import "./login.css";
 import Alert from 'react-bootstrap/Alert';
-import './Login.css'
-import { loginService, registerService, } from "../services/UserService";
+import { loginService, registerService,  } from "../services/UserService";
 import { useNavigate } from "react-router";
-import {
-  MDBContainer,
-  MDBTabs,
-  MDBTabsItem,
-  MDBTabsLink,
-  MDBTabsContent,
-  MDBTabsPane,
-  MDBBtn,
-  MDBIcon,
-  MDBInput,
-  MDBCheckbox
-}
-  from 'mdb-react-ui-kit';
 
 function Login() {
+  const [signIn, toggle] = useState(true);
   const [errors, setErrors] = useState([]);
   const [alertMessage, setAlertMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
-
-
-  const [justifyActive, setJustifyActive] = useState('tab1');;
-
-  const handleJustifyClick = (value) => {
-    if (value === justifyActive) {
-      return;
-    }
-
-    setJustifyActive(value);
-  };
   function isValidInput(value, pattern) {
     return new RegExp(pattern).test(value);
   }
@@ -58,7 +36,7 @@ function Login() {
       }
     }
   }
-
+  
   async function cadastrarTeste(event) {
     setShowAlert(false);
     event.preventDefault();
@@ -114,13 +92,13 @@ function Login() {
     setShowAlert(false);
     setErrors([]);
     zerarCadastro();
-    handleJustifyClick('tab1')
+    toggle(false);
   }
   function irLogin() {
     setShowAlert(false);
     setErrors([]);
     zerarLogin();
-    handleJustifyClick('tab2')
+    toggle(true);
   }
   function zerarLogin() {
     document.querySelector("#EmailLogin").value = null;
@@ -134,51 +112,57 @@ function Login() {
   }
   return (
     <>
-      <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className="w-100 custom-alert" >
-        {alertMessage && <p>{alertMessage}</p>}
-        {errors.map((error, index) => (
-          <p key={index}><h6 className="errosLogin">{error}</h6></p>
-        ))}
-      </Alert>
-      <div className="loginBody">
-        <div className="logo">
-          <img
-            src="\SpringMed.png"
-          />
-        </div>
-        <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-          <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
-            <MDBTabsItem>
-              <MDBTabsLink className="MDBTabsLink"
-               onClick={() => irCadastrar()} active={justifyActive === 'tab1'}>
-                Login
-              </MDBTabsLink>
-            </MDBTabsItem>
-            <MDBTabsItem>
-              <MDBTabsLink className="MDBTabsLink"
-                onClick={() => irLogin()} active={justifyActive === 'tab2'}>
-                Register
-              </MDBTabsLink>
-            </MDBTabsItem>
-          </MDBTabs>
-          
-          <MDBTabsContent>
-            <MDBTabsPane show={justifyActive === 'tab1'}>
-              <MDBInput wrapperClass='mb-4' id='EmailLogin' type='email' placeholder='Email' />
-              <MDBInput wrapperClass='mb-4' id='SenhaLogin' type='password' placeholder='Senha' />
-              <button className="btn btn-custom-success"  onClick={login}>Entrar</button>
-            </MDBTabsPane>
-
-            <MDBTabsPane show={justifyActive === 'tab2'}>
-              <MDBInput wrapperClass='mb-4' id='NomeCadastro' type='text' placeholder='Nome' />
-              <MDBInput wrapperClass='mb-4' id='EmailCadastro' type='text' placeholder='Email' />
-              <MDBInput wrapperClass='mb-4' id='SenhaCadastro' type='email' placeholder='Senha' />
-              <MDBInput wrapperClass='mb-4' id='SenhaConfirmarCadastro' type='password' placeholder='Confirmar a senha' />
-              <button className="btn btn-custom-success"  onClick={cadastrarTeste}>Criar conta</button>
-            </MDBTabsPane>
-          </MDBTabsContent>
-        </MDBContainer>
-
+      <div>
+        <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className="w-100 custom-alert" >
+          {alertMessage && <p>{alertMessage}</p>}
+          {errors.map((error, index) => (
+            <p key={index}><h6 className="errosLogin">{error}</h6></p>
+          ))}
+        </Alert>
+        <Components.Container className="LoginBody">
+          <Components.SignUpContainer signingIn={signIn}>
+            <Components.Form>
+              <Components.Title>Crie sua conta</Components.Title>
+              <Components.Input type="text" placeholder="Nome" id="NomeCadastro" required />
+              <Components.Input type="email" placeholder="Email" id="EmailCadastro" required />
+              <Components.Input type="password" placeholder="Senha" id="SenhaCadastro" required />
+              <Components.Input type="password" placeholder="Confirmar Senha" id="SenhaConfirmarCadastro" required />
+              <Components.Button onClick={cadastrarTeste}>Cadastrar</Components.Button>
+            </Components.Form>
+          </Components.SignUpContainer>
+          <Components.SignInContainer signingIn={signIn}>
+            <Components.Form>
+              <Components.Title>Entrar</Components.Title>
+              <Components.Input type="email" placeholder="EmailLogin" id="EmailLogin" required/>
+              <Components.Input type="password" placeholder="SenhaLogin" id="SenhaLogin" required/>
+              <Components.Button onClick={login}>Entrar</Components.Button>
+            </Components.Form>
+          </Components.SignInContainer>
+          <Components.OverlayContainer signingIn={signIn}>
+            <Components.Overlay signingIn={signIn}>
+              <Components.LeftOverlayPanel signingIn={signIn}>
+                <Components.Title className="text-dark">Já tem conta?</Components.Title>
+                <Components.Paragraph className="text-dark">
+                  Entre com sua Conta, Faça Login
+                </Components.Paragraph>
+                <Components.GhostButton onClick={() => irLogin()}>
+                  Entrar</Components.GhostButton>
+              </Components.LeftOverlayPanel>
+              <Components.RightOverlayPanel signingIn={signIn}>
+                <Components.Title className="text-dark">Bem vindo!!!</Components.Title>
+                <Components.Paragraph className="text-dark">
+                  Comece sua jornada conosco
+                </Components.Paragraph>
+                <Components.GhostButton
+                    onClick={() => irCadastrar()}
+                    className="text-dark btn-lg"
+                  >
+                  Cadastrar
+                </Components.GhostButton>
+              </Components.RightOverlayPanel>
+            </Components.Overlay>
+          </Components.OverlayContainer>
+        </Components.Container>
       </div>
     </>
   );

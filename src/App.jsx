@@ -10,7 +10,7 @@ import Sobre from './Pages/Sobre';
 
 function App() {
 
-const [token, setToken] = useState(sessionStorage.getItem("token"))
+const [token, setToken] = useState(sessionStorage.getItem("token"));
 
 
   return (

@@ -1,19 +1,59 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import { EnfermeiroPlantoes } from '../services/EnfermeiroService';
 import './ModalPlantoesEnfermeiro.css'
-const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes, desmarcarPlantao }) => {
+import $ from 'jquery';
+import { adicionarEnfermeiroPlantao } from '../services/EnfermeiroService';
+const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes, desmarcarPlantao, fetchPlantoes, nome }) => {
 
-  const [lista, setLista] = useState(null);
+  const [lista, setLista] = useState(enfermeiroPlantoes);
 
 
+  useEffect(() => {
+    setLista(enfermeiroPlantoes);
+  }, [enfermeiroPlantoes])
 
+  async function adicionarPlantao() {
+    const data = $('#dataInputPlantao').val();
+    const hora = $('#horarioInputPlantao').val();
+
+    if (data === "" || hora === "") {
+      console.log("Os campos devem ser preenchidos");
+      return;
+    }
+
+    const objeto = {
+      "dia": data,
+      "horario": hora
+    };
+    try {
+      await adicionarEnfermeiroPlantao(idEnfermeiro, objeto);
+      fetchPlantoes(idEnfermeiro);
+      $('#dataInputPlantao').val("");
+      $('#horarioInputPlantao').val("");
+      
+    } catch (error) {
+      if(error.response && error.response.status === 400){
+        const errorMessage = error.response.data;
+        console.log(errorMessage);
+      }
+    }
+  }
+
+  async function removerPlantao(idEnfermeiroRecebido, idPlantaoRecebido) {
+    try {
+      await desmarcarPlantao(idEnfermeiroRecebido, idPlantaoRecebido);
+      fetchPlantoes(idEnfermeiroRecebido);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
+
     <div>
       <Modal show={show} onHide={close} className='ModalPlantoesEnfermeiroComponent'>
         <Modal.Header closeButton>
-          <Modal.Title>Plantões Agendados</Modal.Title>
+          <Modal.Title><h5>Plantões Agendados de {nome}</h5></Modal.Title>
         </Modal.Header>
         <Modal.Body className='ModalPlantoesEnfermeiroBody'>
           <table className='tabelaEnfermeiroPlantoes'>
@@ -24,13 +64,14 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
               </tr>
             </thead>
             <tbody>
-              {enfermeiroPlantoes ? (
-                enfermeiroPlantoes.map((relacionamento) => (
+              {lista ? (
+                lista.map((relacionamento) => (
                   <tr key={relacionamento.plantao.idPlantao}>
+                    <td>{relacionamento.plantao.idPlantao}</td>
                     <td>{relacionamento.plantao.dia}</td>
                     <td>{relacionamento.plantao.horario}</td>
                     <td>
-                      <button className='btn btn-danger' onClick={() => desmarcarPlantao(idEnfermeiro, relacionamento.plantao.idPlantao)}>Desmarcar</button>
+                      <button className='btn btn-danger' onClick={() => removerPlantao(idEnfermeiro, relacionamento.plantao.idPlantao)}>Desmarcar</button>
                     </td>
                   </tr>
                 ))
@@ -70,7 +111,7 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
                 </div>
               </div>
             </div>
-            <button className='btn btn-success'>Agendar</button>
+            <button className='btn btn-success' onClick={() => adicionarPlantao()}>Agendar</button>
           </div>
         </Modal.Footer>
       </Modal>

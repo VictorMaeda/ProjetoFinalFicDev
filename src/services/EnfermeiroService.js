@@ -28,9 +28,9 @@ export async function EnfermeiroPlantoes(id){
     const lista = await api.get(`/enfermeiro/buscar/plantoes/${id}`);
     return lista;
 }
-export async function removerEnfermeiroPlantao(id){
-await api.delete(`removerPlantao/${idPlantao}/${idEnfermeiro}`);
+export async function removerEnfermeiroPlantao(idEnfermeiro, idPlantao){
+await api.delete(`/enfermeiro/removerPlantao/${idPlantao}/${idEnfermeiro}`);
 }
-export async function adicionaEnfermeiroPlantao(id){
-    await api.post(`adicionarPlantao/${idPlantao}/${idEnfermeiro}`);
+export async function adicionarEnfermeiroPlantao(idEnfermeiro, plantao){
+    await api.post(`/enfermeiro/adicionarPlantao/${idEnfermeiro}`, plantao);
 }
