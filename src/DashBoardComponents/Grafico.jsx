@@ -16,27 +16,38 @@ const options = {
 };
 
 const Grafico = () => {
-  const [dataAtual, setDataAtual] = useState(new Date().getDate());
   const [dataSemana, setDataSemana] = useState([]);
-  const [dataMes, setDataMes] = useState([]);
+  const [diaSelecionado, setDiaSelecionado] = useState(getFormattedDate());
+
+  function getFormattedDate() {
+    const dataAtual = new Date();
+    const diaAtual = String(dataAtual.getDate()).padStart(2, '0');
+    const mesAtual = String(dataAtual.getMonth() + 1).padStart(2, '0');
+    const anoAtual = dataAtual.getFullYear();
+    return `${anoAtual}-${mesAtual}-${diaAtual}`;
+  }
+
+  const handleIncrementDay = () => {
+    const dataSelecionada = new Date(diaSelecionado);
+    dataSelecionada.setDate(dataSelecionada.getDate() + 1);
+    setDiaSelecionado(dataSelecionada.toISOString().split('T')[0]);
+  };
+
+  const handleDecrementDay = () => {
+    const dataSelecionada = new Date(diaSelecionado);
+    dataSelecionada.setDate(dataSelecionada.getDate() - 1);
+    setDiaSelecionado(dataSelecionada.toISOString().split('T')[0]);
+  };
 
   useEffect(() => {
     async function fetchData() {
-      const dataAtual = new Date();
-      const diaAtual = String(dataAtual.getDate()).padStart(2, '0');
-      const mesAtual = String(dataAtual.getMonth() + 1).padStart(2, '0');
-      const anoAtual = dataAtual.getFullYear();
-      const dia = `${anoAtual}-${mesAtual}-${diaAtual}`;
-
-
       try {
-        var response = await findSemanaData(dia);
+        var response = await findSemanaData(diaSelecionado);
         response = response.data;
       } catch (error) {
         console.log(error);
         return;
       }
-      console.log(response)
 
       const graficoData = [];
       graficoData.push(colunas);
@@ -44,18 +55,21 @@ const Grafico = () => {
         graficoData.push([`${objeto.data}`, objeto.profissionais, objeto.tecnicos, objeto.enfermeiros]);
       });
       setDataSemana(graficoData);
-      console.log(dataSemana)
     }
     fetchData();
-  }, []);
+  }, [diaSelecionado]);
 
   return (
-    <Chart
-      chartType="ComboChart"
-      width="100%"
-      data={dataSemana}
-      options={options}
-    />
+    <>
+      <button onClick={handleIncrementDay}>+</button>
+      <button onClick={handleDecrementDay}>-</button>
+      <Chart
+        chartType="ComboChart"
+        width="100%"
+        data={dataSemana}
+        options={options}
+      />
+    </>
   );
 }
 

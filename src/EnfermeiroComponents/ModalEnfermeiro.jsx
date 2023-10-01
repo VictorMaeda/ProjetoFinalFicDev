@@ -82,8 +82,10 @@ const ModalEnfermeiro = ({
         if (error.response && error.response.status === 400) {
           const errorMessage = error.response.data; // Obtém a mensagem de erro do back-end
           showValidationErrorAlert(errorMessage);
+          return;
         } else {
           console.log(error.response.data);
+          return;
         }
       }
       
@@ -96,28 +98,37 @@ const ModalEnfermeiro = ({
       } catch (error) {
         if (error.response && error.response.status === 400) {
           showValidationErrorAlert(error.response.data);
+          return;
         } else {
-          // Outro tratamento de erro
           console.log(error.response.data);
+          return;
         }
       }
     }
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Your work has been saved',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
 
   return (
-    <Modal show={show} onHide={() => { handleClose(); setShowAlert(false); }} animation={false} backdrop="static" dialogClassName="EnfermeiroCustomModal">
-      <Modal.Header closeButton>
-        <Modal.Title>{verbo} de Enfermeiro</Modal.Title>
-      </Modal.Header>
-      <Modal.Body className='custom-modal-body'>
-        <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className="w-100 custom-alert">
+    <>
+    <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className="w-100 custom-alert">
           <Alert.Heading>Erro de Validação</Alert.Heading>
           {alertMessage && <p>{alertMessage}</p>}
           {errors.map((error, index) => (
             <p key={index}>{error}</p>
           ))}
         </Alert>
+    <Modal show={show} onHide={() => { handleClose(); setShowAlert(false); }} animation={false} backdrop="static" dialogClassName="EnfermeiroCustomModal">
+      <Modal.Header closeButton>
+        <Modal.Title>{verbo} de Enfermeiro</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className='custom-modal-body'>
         <label htmlFor="">Nome</label>
         <input
           id="nomeInput"
@@ -138,10 +149,7 @@ const ModalEnfermeiro = ({
         <select name="nivel" id="nivelInput">
           {idEnfermeiro ? (
             <option value={nivelEnfermeiro}>{nivelEnfermeiro}</option>
-          ) : null}
-          <option value="" disabled={!idEnfermeiro} selected={!idEnfermeiro}>
-            Nível
-          </option>
+          ) : null}   
           <option value="Enfermeiro">Enfermeiro</option>
           <option value="Técnico">Técnico</option>
         </select>
@@ -153,6 +161,7 @@ const ModalEnfermeiro = ({
         </Button>
       </Modal.Footer>
     </Modal>
+        </>
   );
 }
 

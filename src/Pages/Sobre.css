@@ -11,21 +11,11 @@
 }
 .SobreBody{
     justify-content: center;
-}
-.GitHub{
-    width: 100%;
+} 
+.GitHub a{
+    width: 5%;
     height: auto;
 }
-/* a {
-    width: 100px; /* Largura padrão */
-  }
-  
-  /* Estilos para telas menores (exemplo: telas com largura menor que 768px) */
-  @media (max-width: 768px) {
-    a {
-      width: 70px; /* Largura reduzida para telas menores */
-    }
-  } */
 
 .contatos{
     justify-content: center;

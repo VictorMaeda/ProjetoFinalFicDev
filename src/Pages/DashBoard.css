@@ -6,3 +6,6 @@
 .DashBoardBody{
   display: block;
 }
+.DivFlex{
+  display: flex;
+}

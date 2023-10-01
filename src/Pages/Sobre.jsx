@@ -11,8 +11,8 @@ const Sobre = () => {
       <h4>Fic Dev</h4>
       <h4>Contatos</h4>
       <div className='contatos'>
-        <a href="https://github.com/VictorMaeda">
-          <img src="/GitHub.png" alt="GitHub" className="GitHub" />
+        <a href="https://github.com/VictorMaeda" className="GitHub"  >
+          <img src="/GitHub.png" alt="GitHub"/>
         </a>
         
       </div>

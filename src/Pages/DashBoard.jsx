@@ -15,8 +15,11 @@ const DashBoard = () => {
     <>
       <ColorSchemesExample />
       <div className='DashBoardBody'>
-            <Grafico />
+        <div className='DivFlex'>
             <GraficoPizza />
+            <button>Ola</button>
+        </div>
+            <Grafico />
       </div>
     </>
   );
