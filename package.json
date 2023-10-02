@@ -31,7 +31,9 @@
     "react-google-charts": "^4.0.1",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
-    "styled-components": "^6.0.8"
+    "react-toastify": "^9.1.3",
+    "styled-components": "^6.0.8",
+    "sweetalert2": "^11.7.31"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

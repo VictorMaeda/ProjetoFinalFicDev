@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './ModalEnfermeiro.css';
 import { atualizarEnfermeiro, cadastrarEnfermeiro } from '../services/EnfermeiroService';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ModalEnfermeiro = ({
   show,
@@ -78,6 +79,17 @@ const ModalEnfermeiro = ({
         const response = await atualizarEnfermeiro(idEnfermeiro, objeto);
         fetchEnfermeiros();
         handleClose();
+        toast.success('Enfermeiro Atualizado', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        return;
       } catch (error) {
         if (error.response && error.response.status === 400) {
           const errorMessage = error.response.data; // Obtém a mensagem de erro do back-end
@@ -95,6 +107,17 @@ const ModalEnfermeiro = ({
         const response = await cadastrarEnfermeiro(objeto);
         handleClose();
         fetchEnfermeiros();
+        toast.success('Enfermeiro Cadastrado', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        return;
       } catch (error) {
         if (error.response && error.response.status === 400) {
           showValidationErrorAlert(error.response.data);
@@ -105,13 +128,6 @@ const ModalEnfermeiro = ({
         }
       }
     }
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Your work has been saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
   }
 
 
@@ -124,6 +140,18 @@ const ModalEnfermeiro = ({
             <p key={index}>{error}</p>
           ))}
         </Alert>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     <Modal show={show} onHide={() => { handleClose(); setShowAlert(false); }} animation={false} backdrop="static" dialogClassName="EnfermeiroCustomModal">
       <Modal.Header closeButton>
         <Modal.Title>{verbo} de Enfermeiro</Modal.Title>

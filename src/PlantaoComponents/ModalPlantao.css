@@ -8,9 +8,8 @@
 }
 
 .PlantaoModal {
-  max-width: 100%;
-  max-height: 80%;
-  width: 600px;
+  width: 25%;
+  min-width: 400px;
   margin: 80px auto 0 auto; /* 80px acima, centralizado horizontalmente e 0 para as margens superior e inferior */
 }
 
@@ -25,8 +24,7 @@
 .tabelaNaoEscalados th,
 .tabelaNaoEscalados td {
   text-align: center;
-  padding: 20px;
-  /* Ajuste o espaçamento interno conforme necessário */
+  padding: 10px;
 }
 .modalBodyPlantao {
   height: 600px; /* Defina a altura fixa desejada para o Modal.Body */

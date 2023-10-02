@@ -1,6 +1,6 @@
 .ModalPlantoesEnfermeiroBody {
-    max-height: 300px;
-    overflow-y: auto;
+    height: 300px;
+    overflow-y: scroll !important;
 }
 
 
@@ -26,3 +26,11 @@
 .ModalFooter{
     display: block;
 }
+
+.w-100.custom-alert {
+    top: 0; /* Coloca o elemento no topo da janela */
+    left: 0; /* Opcional: coloca o elemento no canto esquerdo da janela */
+    width: 100%; /* Define a largura como 100% */
+    z-index: 99999999999; /* Define a ordem de empilhamento (z-index) conforme necessário */
+    /* Outras propriedades CSS, como cores de fundo e texto, podem ser adicionadas aqui */  
+  }

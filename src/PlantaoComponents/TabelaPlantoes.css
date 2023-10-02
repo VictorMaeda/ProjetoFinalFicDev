@@ -17,4 +17,28 @@
 .plantaoSelecionado {
     background-color: rgb(230, 173, 173);
   }
+.TabelaPlantoes{
+    max-height: 600px;
+    overflow-y: scroll;
+}
+/* Estilo da barra de rolagem */
+::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+  }
+  
+  /* Estilo do polegar (a parte que você arrasta) */
+  ::-webkit-scrollbar-thumb {
+    background: #888; /* Cor de fundo do polegar */
+    border-radius: 5px; /* Borda arredondada do polegar */
+  }
+  
+  /* Estilo da trilha (a parte onde o polegar se move) */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Cor de fundo da trilha */
+  }
+  
+  /* Estilo do polegar quando o mouse estiver sobre ele */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Cor de fundo do polegar ao passar o mouse por cima */
+  }
   

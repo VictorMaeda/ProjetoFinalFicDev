@@ -4,6 +4,7 @@ import ModalPlantao from './ModalPlantao';
 import './Escalados.css';
 import { getPlantaoEscalados, deleteEnfermeiroEscalado } from '../services/PlantaoService';
 import { TrashSimple } from '@phosphor-icons/react';
+import Swal from 'sweetalert2';
 
 const Escalados = ({ plantao }) => {
   const [show, setShow] = useState(false);
@@ -24,12 +25,22 @@ const Escalados = ({ plantao }) => {
 
 
   const deletarEnfermeiro = async (idEnfermeiro) => {
-    try {
-      await deleteEnfermeiroEscalado(plantao.idPlantao, idEnfermeiro);
-      // Atualize a lista após a exclusão do enfermeiro
-      atualizarLista();
-    } catch (error) {
-      console.log(error);
+    const result = await Swal.fire({
+      title: 'Você tem certeza que quer desmarcar?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, desmarque!',
+      cancelButtonText: 'Não, mantenha!'
+    });
+    if (result.isConfirmed) {
+      try {
+        await deleteEnfermeiroEscalado(plantao.idPlantao, idEnfermeiro);
+        // Atualize a lista após a exclusão do enfermeiro
+        atualizarLista();
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -76,11 +87,11 @@ const Escalados = ({ plantao }) => {
             </div>
 
             {plantao !== null ? (
-            <div className='text-end mt-5'>
-              <Button variant="primary" onClick={handleShow}>
-                Adicionar
-              </Button>
-            </div>): ''}
+              <div className='text-end mt-5'>
+                <Button variant="primary" onClick={handleShow}>
+                  Adicionar
+                </Button>
+              </div>) : ''}
 
 
           </div>

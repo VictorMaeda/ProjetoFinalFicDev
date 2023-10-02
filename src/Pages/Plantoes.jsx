@@ -29,7 +29,7 @@ const Plantoes = () => {
       console.log(error);
     }
   }
-  
+
   async function findPlantoes() {
     try {
       const result = await getPlantoes();
@@ -59,22 +59,19 @@ const Plantoes = () => {
             {/* Passe a função buscarEscalados como uma propriedade */}
             <div className='TituloPlantao'>
               <h3>Plantões</h3>
-               <button onClick={() => setshowModalPlantoes(true)} className='btn btn-primary'>
-               Adicionar Plantão</button>
+              <button onClick={() => setshowModalPlantoes(true)} className='btn btn-primary'>
+                Adicionar Plantão</button>
             </div>
-            <TabelaPlantoes buscarEscalados={buscarEscalados} setDataHoraPlantao={setDataHoraPlantao} findPlantoes={findPlantoes} listaPlantoes={listaPlantoes}/>
+            <TabelaPlantoes buscarEscalados={buscarEscalados} setDataHoraPlantao={setDataHoraPlantao} findPlantoes={findPlantoes} listaPlantoes={listaPlantoes} />
           </div>
-          {
-            window.innerWidth > 991 ?  
-            <div className='col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mb-3'>
-              <Escalados lista={listaEscalados} deletarEscalado={deletarEscalado}
-                plantao={plantao} modal={ModalPlantao} />
-            </div>
-            : null
-          }
+              <div className='col-sm-12 col-md-12 col-lg-6 col-xl-6 col-xxl-6 mb-3'>
+                <Escalados lista={listaEscalados} deletarEscalado={deletarEscalado}
+                  plantao={plantao} modal={ModalPlantao} />
+              </div>
         </div>
       </div>
-      <ModalCadastroPlantao show={showModalPlantoes} close={() => setshowModalPlantoes(false)} findPlantoes={findPlantoes}/>
+
+      <ModalCadastroPlantao show={showModalPlantoes} close={() => setshowModalPlantoes(false)} findPlantoes={findPlantoes} />
     </div>
   );
 }

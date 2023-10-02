@@ -10,6 +10,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { sessionValidate } from '../services/UserService';
 import ModalPlantoesEnfermeiro from '../EnfermeiroComponents/ModalPlantoesEnfermeiro';
 import { Pen, TrashSimple } from '@phosphor-icons/react';
+import Swal from 'sweetalert2';
 
 function Enfermeiros() {
   const [listaEnfermeiros, setListaEnfermeiros] = useState([]);
@@ -74,8 +75,15 @@ function Enfermeiros() {
   }
 
   async function removerEnfermeiro(id) {
-    const excluir = confirm("Deseja deletar o enfermeiro?");
-    if (excluir) {
+    const result = await Swal.fire({
+      title: 'Você tem certeza que quer excluir?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, exclua!',
+      cancelButtonText: 'Não, cancele!'
+    });
+    if (result.isConfirmed) {
       try {
         const result = await deletarEnfermeiro(id);
         setListaEnfermeiros(result.data);

@@ -1,23 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import { Alert, Modal } from 'react-bootstrap';
 import './ModalPlantoesEnfermeiro.css'
 import $ from 'jquery';
 import { adicionarEnfermeiroPlantao } from '../services/EnfermeiroService';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
+
 const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes, desmarcarPlantao, fetchPlantoes, nome }) => {
 
   const [lista, setLista] = useState(enfermeiroPlantoes);
+  const [alertMessage, setAlertMessage] = useState(null);
+  const [showAlert, setShowAlert] = useState(false);
 
+  const dataAtual = new Date();
 
   useEffect(() => {
     setLista(enfermeiroPlantoes);
   }, [enfermeiroPlantoes])
 
+  function fecharModal() {
+    setShowAlert(false);
+    close();
+  }
+  function showValidationErrorAlert(message) {
+    setAlertMessage(message);
+    setShowAlert(true);
+  }
   async function adicionarPlantao() {
     const data = $('#dataInputPlantao').val();
     const hora = $('#horarioInputPlantao').val();
 
     if (data === "" || hora === "") {
-      console.log("Os campos devem ser preenchidos");
+      showValidationErrorAlert("Os campos devem ser preenchidos");
+      return;
+    }
+    const dataInserida = new Date(data);
+
+    if (dataInserida < dataAtual) {
+      showValidationErrorAlert("Não é possível agendar um dia passado");
       return;
     }
 
@@ -25,33 +46,61 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
       "dia": data,
       "horario": hora
     };
+
     try {
       await adicionarEnfermeiroPlantao(idEnfermeiro, objeto);
       fetchPlantoes(idEnfermeiro);
       $('#dataInputPlantao').val("");
       $('#horarioInputPlantao').val("");
-      
+      toast.success('Plantão Agendado', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
     } catch (error) {
-      if(error.response && error.response.status === 400){
+      if (error.response && error.response.status === 400) {
         const errorMessage = error.response.data;
-        console.log(errorMessage);
+        showValidationErrorAlert(errorMessage);
+        return;
       }
     }
   }
 
   async function removerPlantao(idEnfermeiroRecebido, idPlantaoRecebido) {
-    try {
-      await desmarcarPlantao(idEnfermeiroRecebido, idPlantaoRecebido);
-      fetchPlantoes(idEnfermeiroRecebido);
-    } catch (error) {
-      console.log(error);
+    const result = await Swal.fire({
+      title: 'Você tem certeza que quer desmarcar?',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim, desmarque!',
+      cancelButtonText: 'Não, mantenha!'
+    });
+    if (result.isConfirmed) {
+      try {
+        await desmarcarPlantao(idEnfermeiroRecebido, idPlantaoRecebido);
+        fetchPlantoes(idEnfermeiroRecebido);
+
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
+
 
   return (
 
     <div>
-      <Modal show={show} onHide={close} className='ModalPlantoesEnfermeiroComponent'>
+      <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className="w-100 custom-alert">
+        <Alert.Heading>Erro de Validação</Alert.Heading>
+        {alertMessage && <p>{alertMessage}</p>}
+      </Alert>
+      <Modal show={show} onHide={fecharModal} className='ModalPlantoesEnfermeiroComponent'>
         <Modal.Header closeButton>
           <Modal.Title><h5>Plantões Agendados de {nome}</h5></Modal.Title>
         </Modal.Header>
@@ -67,7 +116,6 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
               {lista ? (
                 lista.map((relacionamento) => (
                   <tr key={relacionamento.plantao.idPlantao}>
-                    <td>{relacionamento.plantao.idPlantao}</td>
                     <td>{relacionamento.plantao.dia}</td>
                     <td>{relacionamento.plantao.horario}</td>
                     <td>
@@ -112,6 +160,7 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
               </div>
             </div>
             <button className='btn btn-success' onClick={() => adicionarPlantao()}>Agendar</button>
+            <button onClick={() => console.log(enfermeiroPlantoes)}>Lista</button>
           </div>
         </Modal.Footer>
       </Modal>

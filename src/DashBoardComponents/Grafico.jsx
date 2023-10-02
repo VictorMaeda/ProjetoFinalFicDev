@@ -106,12 +106,9 @@ const Grafico = () => {
   
     getDia(primeiroDiaCompleto)
       .then(responseDay => {
-        // Manipule a resposta aqui
         dataSemana.splice(7, 1);
         dataSemana.splice(1, 0, gerarArrayFromObjeto(responseDay));
-  
-        // Atualize o estado com os novos dados
-        setDataSemana([...dataSemana]); // Usamos o spread operator para criar uma nova referência
+        setDataSemana([...dataSemana]);
       })
       .catch(error => {
         console.error(error);

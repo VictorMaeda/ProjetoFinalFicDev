@@ -18,7 +18,7 @@ const TabelaPlantoes = ({ buscarEscalados, findPlantoes, listaPlantoes }) => {
   }
 
   return (
-    <>
+    <div className='TabelaPlantoes'>
       <Table responsive striped bordered hover>
         <thead>
           <tr>
@@ -28,9 +28,9 @@ const TabelaPlantoes = ({ buscarEscalados, findPlantoes, listaPlantoes }) => {
           </tr>
         </thead>
         <tbody>
-          
+
           {listaPlantoes.map((plantao) => (
-            
+
             <tr
               key={plantao.idPlantao}
               className={`plantaoModel ${sessionStorage.getItem("plantaoExibido") === plantao.idPlantao.toString() ? 'plantaoSelecionado' : ''}`}
@@ -44,7 +44,7 @@ const TabelaPlantoes = ({ buscarEscalados, findPlantoes, listaPlantoes }) => {
           ))}
         </tbody>
       </Table>
-    </>
+    </div>
   );
 };
 export default TabelaPlantoes;
