@@ -78,6 +78,7 @@ const ModalEnfermeiro = ({
       try {
         console.log(`${corenValue}`)
         const response = await atualizarEnfermeiro(idEnfermeiro, objeto);
+        setShowAlert(false);
         fetchEnfermeiros();
         handleClose();
         toast.success('Enfermeiro Atualizado', {
@@ -106,18 +107,9 @@ const ModalEnfermeiro = ({
     } else {
       try {
         const response = await cadastrarEnfermeiro(objeto);
+        setShowAlert(false);
         handleClose();
         fetchEnfermeiros();
-        toast.success('Enfermeiro Cadastrado', {
-          position: "top-right",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
         return;
       } catch (error) {
         if (error.response && error.response.status === 400) {

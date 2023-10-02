@@ -3,6 +3,8 @@ import Alert from 'react-bootstrap/Alert';
 import './Login.css'
 import { loginService, registerService, } from "../services/UserService";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import {
   MDBContainer,
   MDBTabs,
@@ -47,7 +49,16 @@ function Login() {
     const senhaInput = document.querySelector("#SenhaLogin").value;
     try {
       await loginService(emailInput, senhaInput);
-      console.log("Usuário logado com sucesso");
+      toast.success('Plantao cadastrado com sucesso!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       zerarLogin();
       navigate("/Plantoes");
     } catch (error) {
@@ -98,7 +109,16 @@ function Login() {
   async function cadastrar(usuario) {
     try {
       await registerService(usuario);
-      console.log("Usuario cadastrado com sucesso")
+      toast.success('Usuário cadastrado com sucesso!', {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       zerarCadastro();
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -140,6 +160,7 @@ function Login() {
           <p key={index}><h6 className="errosLogin">{error}</h6></p>
         ))}
       </Alert>
+      <ToastContainer />
       <div className="loginBody">
         <div className="logo mb-5">
           <img

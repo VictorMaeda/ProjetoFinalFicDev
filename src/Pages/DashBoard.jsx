@@ -7,7 +7,6 @@ import GraficoPizza from '../DashBoardComponents/GraficoPizza';
 
 
 const DashBoard = () => {
-  //sessionValidate();
 
 
 
@@ -18,6 +17,7 @@ const DashBoard = () => {
         <div className='DivFlex'>
             <GraficoPizza />
         </div>
+      <button onClick={() => sessionValidate()}>SessionValidate()</button>
             <Grafico />
       </div>
     </>

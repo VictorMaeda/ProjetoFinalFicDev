@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import { useNavigate } from "react-router";
 import { api } from "./api";
 
@@ -27,8 +28,8 @@ export async function loginService(email, senha) {
 
 
 export async function sessionValidate() {
-  const navigate = useNavigate(); // Mova a chamada para useNavigate() para dentro de um componente React
-
+  const navigate = useNavigate();
+  
   try {
     const accessToken = sessionStorage.getItem('token');
     await api.get('/auth/validate', {
@@ -37,6 +38,6 @@ export async function sessionValidate() {
       }
     });
   } catch (error) {
-    navigate("/"); // Agora você pode usar navigate() dentro de um componente React
+    navigate("/");
   }
 }
