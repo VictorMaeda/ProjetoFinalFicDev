@@ -27,17 +27,21 @@ export async function loginService(email, senha) {
 
 
 
-export async function sessionValidate() {
-  const navigate = useNavigate();
-  
+export function sessionValidate() {
+  const accessToken = sessionStorage.getItem('token');
   try {
-    const accessToken = sessionStorage.getItem('token');
-    await api.get('/auth/validate', {
+    const response = api.get('/auth/validate', {
       headers: {
         'Authorization': `Bearer ${JSON.parse(accessToken)}`
       }
     });
+    if (response.status === 200) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (error) {
-    navigate("/");
+    console.error('Erro ao validar a sessão:', error);
+    return false;
   }
 }

@@ -47,7 +47,7 @@
   display: flex; /* Use flexbox para centralizar o conteúdo */
   flex-direction: column; /* Alinhe o conteúdo verticalmente */
   justify-content: center; /* Centralize verticalmente */
-  align-items: center; /* Centralize horizontalmente */
+  align-items: center; /* Centralize horizontalmente */ 
   padding: 2px;
   padding-top: 10px;
 }
