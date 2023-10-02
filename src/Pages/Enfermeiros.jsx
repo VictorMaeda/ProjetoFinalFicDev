@@ -7,7 +7,6 @@ import ModalEnfermeiro from '../EnfermeiroComponents/ModalEnfermeiro';
 import ColorSchemesExample from '../Components/ColorSchemesExample';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { sessionValidate } from '../services/UserService';
 import ModalPlantoesEnfermeiro from '../EnfermeiroComponents/ModalPlantoesEnfermeiro';
 import { Pen, TrashSimple } from '@phosphor-icons/react';
 import Swal from 'sweetalert2';

@@ -94,6 +94,7 @@ function Login() {
     }
     cadastrar(usuario);
   }
+  
   async function cadastrar(usuario) {
     try {
       await registerService(usuario);

@@ -62,7 +62,6 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
         progress: undefined,
         theme: "colored",
       });
-
     } catch (error) {
       if (error.response && error.response.status === 400) {
         const errorMessage = error.response.data;
@@ -160,7 +159,6 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
               </div>
             </div>
             <button className='btn btn-success' onClick={() => adicionarPlantao()}>Agendar</button>
-            <button onClick={() => console.log(enfermeiroPlantoes)}>Lista</button>
           </div>
         </Modal.Footer>
       </Modal>

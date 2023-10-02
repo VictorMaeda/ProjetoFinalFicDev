@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import './ModalEnfermeiro.css';
 import { atualizarEnfermeiro, cadastrarEnfermeiro } from '../services/EnfermeiroService';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ModalEnfermeiro = ({
   show,
