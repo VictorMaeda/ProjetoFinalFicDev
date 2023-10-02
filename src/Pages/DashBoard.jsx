@@ -17,7 +17,6 @@ const DashBoard = () => {
       <div className='DashBoardBody'>
         <div className='DivFlex'>
             <GraficoPizza />
-            <button>Ola</button>
         </div>
             <Grafico />
       </div>

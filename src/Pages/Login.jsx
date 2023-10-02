@@ -23,8 +23,7 @@ function Login() {
   const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
-
-  const [justifyActive, setJustifyActive] = useState('tab1');;
+  const [justifyActive, setJustifyActive] = useState('tab1');
 
   const handleJustifyClick = (value) => {
     if (value === justifyActive) {
@@ -113,14 +112,14 @@ function Login() {
   function irCadastrar() {
     setShowAlert(false);
     setErrors([]);
+    setJustifyActive('tab2')
     zerarCadastro();
-    handleJustifyClick('tab1')
   }
   function irLogin() {
     setShowAlert(false);
     setErrors([]);
+    setJustifyActive('tab1')
     zerarLogin();
-    handleJustifyClick('tab2')
   }
   function zerarLogin() {
     document.querySelector("#EmailLogin").value = null;
@@ -141,43 +140,39 @@ function Login() {
         ))}
       </Alert>
       <div className="loginBody">
-        <div className="logo">
+        <div className="logo mb-5">
           <img
             src="\SpringMed.png"
           />
         </div>
-        <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
-          <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
-            <MDBTabsItem>
-              <MDBTabsLink className="MDBTabsLink"
-               onClick={() => irCadastrar()} active={justifyActive === 'tab1'}>
-                Login
-              </MDBTabsLink>
-            </MDBTabsItem>
-            <MDBTabsItem>
-              <MDBTabsLink className="MDBTabsLink"
-                onClick={() => irLogin()} active={justifyActive === 'tab2'}>
-                Register
-              </MDBTabsLink>
-            </MDBTabsItem>
-          </MDBTabs>
-          
-          <MDBTabsContent>
-            <MDBTabsPane show={justifyActive === 'tab1'}>
-              <MDBInput wrapperClass='mb-4' id='EmailLogin' type='email' placeholder='Email' />
-              <MDBInput wrapperClass='mb-4' id='SenhaLogin' type='password' placeholder='Senha' />
-              <button className="btn btn-custom-success"  onClick={login}>Entrar</button>
-            </MDBTabsPane>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-2">
+            <button className={`btn w-100 MDBTabsLink text-white ${justifyActive === 'tab1' ? 'active' : ''}`} onClick={() => irLogin()}>Login</button>
+            </div>
+            <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-2">
+              <button className={`btn w-100 MDBTabsLink text-white ${justifyActive === 'tab2' ? 'active' : ''}`} onClick={() => irCadastrar()} active={justifyActive === 'tab2'}>Cadastrar</button>
+            </div>
+          </div>
 
-            <MDBTabsPane show={justifyActive === 'tab2'}>
-              <MDBInput wrapperClass='mb-4' id='NomeCadastro' type='text' placeholder='Nome' />
-              <MDBInput wrapperClass='mb-4' id='EmailCadastro' type='text' placeholder='Email' />
-              <MDBInput wrapperClass='mb-4' id='SenhaCadastro' type='email' placeholder='Senha' />
-              <MDBInput wrapperClass='mb-4' id='SenhaConfirmarCadastro' type='password' placeholder='Confirmar a senha' />
-              <button className="btn btn-custom-success"  onClick={cadastrarTeste}>Criar conta</button>
-            </MDBTabsPane>
-          </MDBTabsContent>
-        </MDBContainer>
+          <div className="row justify-content-center">
+            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2 mt-4" style={{ display: justifyActive === 'tab2' ? "none" : null }}>
+              <input className='mb-4 form-control' id='EmailLogin' type='email' placeholder='Email' />
+              <input className='mb-4 form-control' id='SenhaLogin' type='password' placeholder='Senha' />
+              <button className="btn btn-custom-success" onClick={login}>Entrar</button>
+            </div>
+
+            <div className="col-sm-12 col-md-12 col-lg-6 col-xl-6 mb-2 mt-4" style={{ display: justifyActive === 'tab1' ? "none" : null }}>
+              <input className='mb-4 form-control' id='NomeCadastro' type='text' placeholder='Nome' />
+              <input className='mb-4 form-control' id='EmailCadastro' type='email' placeholder='Email' />
+              <input className='mb-4 form-control' id='SenhaCadastro' type='password' placeholder='Senha' />
+              <input className='mb-4 form-control' id='SenhaConfirmarCadastro' type='password' placeholder='Confirmar a senha' />
+              <button className="btn btn-custom-success" onClick={cadastrarTeste}>Criar conta</button>
+            </div>
+
+
+          </div>
+        </div>
 
       </div>
     </>
