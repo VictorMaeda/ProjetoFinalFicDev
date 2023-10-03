@@ -13,7 +13,6 @@ import Swal from 'sweetalert2';
 import { sessionValidate } from '../services/UserService';
 
 function Enfermeiros() {
-  sessionValidate();
   const [listaEnfermeiros, setListaEnfermeiros] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

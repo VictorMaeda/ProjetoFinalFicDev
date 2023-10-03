@@ -6,16 +6,12 @@ const Sobre = () => {
   return (
     <div className='SobreBody'>
       <ColorSchemesExample />
-      <h3>Gestão de Enfermeiro/Técnicos</h3>
-      <h4>Victor Maeda Chinen</h4>
-      <h4>Fic Dev</h4>
-      <h4>Contatos</h4>
-      <div className='contatos'>
+      <h3>Victor Maeda Chinen</h3>
+      <h4>Gestão de Enfermeiro/Técnicos</h4>
+      <h4>Curso Fic_dev programador de sistemas</h4>
         <a href="https://github.com/VictorMaeda" className="GitHub"  >
-          <img src="/GitHub.png" alt="GitHub"/>
+          <img src="/GitHub.png" className='imagemGit'/>
         </a>
-        
-      </div>
       <div className='logosDiv'>
         <img src="/Logos.png" className='Logos' alt="Logos" />
       </div>

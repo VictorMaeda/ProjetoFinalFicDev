@@ -12,14 +12,15 @@
 .SobreBody{
     justify-content: center;
 } 
-.GitHub a{
-    width: 5%;
-    height: auto;
-}
+
 
 .contatos{
     justify-content: center;
     margin: 0 auto;
     display: flex;
     height: 20%;
+}
+.imagemGit{
+    width: 10%;
+    height: auto;
 }

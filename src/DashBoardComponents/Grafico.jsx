@@ -36,8 +36,8 @@ const Grafico = () => {
       }
     });
   }
-  
-  
+
+
 
   async function fetchData() {
     console.log("fetchData()")
@@ -51,7 +51,7 @@ const Grafico = () => {
     carregarDataSemana(response);
   }
 
-  function gerarArrayFromObjeto(objeto){
+  function gerarArrayFromObjeto(objeto) {
     return [`${objeto.data}`, objeto.profissionais, objeto.tecnicos, objeto.enfermeiros];
   }
   function carregarDataSemana(response) {
@@ -75,17 +75,17 @@ const Grafico = () => {
     const dataSelecionada = new Date(diaSelecionado);
     dataSelecionada.setDate(dataSelecionada.getDate() + 1);
     setDiaSelecionado(dataSelecionada.toISOString().split('T')[0]);
-    
+
     let ultimoDia = new Date(dataSelecionada);
     ultimoDia.setDate(dataSelecionada.getDate() + 3);
     let ultimoDiaCompleto = ultimoDia.toISOString().split('T')[0];
-  
+
     getDia(ultimoDiaCompleto)
       .then(responseDay => {
         // Manipule a resposta aqui
         dataSemana.splice(1, 1);
         dataSemana.push(gerarArrayFromObjeto(responseDay));
-  
+
         // Atualize o estado com os novos dados
         setDataSemana([...dataSemana]); // Usamos o spread operator para criar uma nova referência
       })
@@ -93,17 +93,17 @@ const Grafico = () => {
         console.error(error);
       });
   };
-  
-  
+
+
   const handleDecrementDay = () => {
     const dataSelecionada = new Date(diaSelecionado);
     dataSelecionada.setDate(dataSelecionada.getDate() - 1);
     setDiaSelecionado(dataSelecionada.toISOString().split('T')[0]);
-  
+
     let primeiroDia = new Date(dataSelecionada);
     primeiroDia.setDate(dataSelecionada.getDate() - 3);
     let primeiroDiaCompleto = primeiroDia.toISOString().split('T')[0];
-  
+
     getDia(primeiroDiaCompleto)
       .then(responseDay => {
         dataSemana.splice(7, 1);
@@ -114,13 +114,13 @@ const Grafico = () => {
         console.error(error);
       });
   };
-  
+
 
 
   return (
     <>
-      <button onClick={handleDecrementDay}>-</button>
-      <button onClick={handleIncrementDay}>+</button>
+      <button onClick={handleDecrementDay} className='btn btn-primary mx-2 mb-0'>-</button>
+      <button onClick={handleIncrementDay} className='btn btn-primary mx-2 mb-0'>+</button>
       <Chart
         chartType="ComboChart"
         width="100%"

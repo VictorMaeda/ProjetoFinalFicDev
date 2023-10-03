@@ -37,10 +37,7 @@ const ModalPlantoesEnfermeiro = ({ show, close, idEnfermeiro, enfermeiroPlantoes
     }
     const dataInserida = new Date(data);
 
-    if (dataInserida < dataAtual) {
-      showValidationErrorAlert("Não é possível agendar um dia passado");
-      return;
-    }
+    
 
     const objeto = {
       "dia": data,
