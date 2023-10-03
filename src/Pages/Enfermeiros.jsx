@@ -46,6 +46,7 @@ function Enfermeiros() {
     setverbo("Edição");
     setShow(true);
   }
+  
   function fetchPlantoes(id) {
     EnfermeiroPlantoes(id)
       .then((response) => {

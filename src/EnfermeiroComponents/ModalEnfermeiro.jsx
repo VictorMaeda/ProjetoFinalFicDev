@@ -76,12 +76,11 @@ const ModalEnfermeiro = ({
 
     if (idEnfermeiro) {
       try {
-        console.log(`${corenValue}`)
         const response = await atualizarEnfermeiro(idEnfermeiro, objeto);
         setShowAlert(false);
         fetchEnfermeiros();
         handleClose();
-        toast.success('Enfermeiro Atualizado', {
+        toast.success('Sucesso', {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -170,11 +169,10 @@ const ModalEnfermeiro = ({
         <select name="nivel" id="nivelInput">
           {idEnfermeiro ? (
             <option value={nivelEnfermeiro}>{nivelEnfermeiro}</option>
-          ) : null}   
+          ) : <option disabled></option> }   
           <option value="Enfermeiro">Enfermeiro</option>
           <option value="Técnico">Técnico</option>
         </select>
-
       </Modal.Body>
       <Modal.Footer>
         <Button className="custom-button" onClick={salvar}>
