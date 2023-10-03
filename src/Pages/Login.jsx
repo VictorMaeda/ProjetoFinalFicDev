@@ -105,7 +105,7 @@ function Login() {
     }
     cadastrar(usuario);
   }
-  
+
   async function cadastrar(usuario) {
     try {
       await registerService(usuario);
@@ -152,6 +152,7 @@ function Login() {
     document.querySelector("#SenhaCadastro").value = null;
     document.querySelector("#SenhaConfirmarCadastro").value = null;
   }
+
   return (
     <>
       <Alert variant="danger" show={showAlert} onClose={() => setShowAlert(false)} dismissible className="w-100 custom-alert" >
@@ -170,7 +171,7 @@ function Login() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-2">
-            <button className={`btn w-100 MDBTabsLink text-white ${justifyActive === 'tab1' ? 'active' : ''}`} onClick={() => irLogin()}>Login</button>
+              <button className={`btn w-100 MDBTabsLink text-white ${justifyActive === 'tab1' ? 'active' : ''}`} onClick={() => irLogin()}>Login</button>
             </div>
             <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-2">
               <button className={`btn w-100 MDBTabsLink text-white ${justifyActive === 'tab2' ? 'active' : ''}`} onClick={() => irCadastrar()} active={justifyActive === 'tab2'}>Cadastrar</button>
@@ -192,10 +193,8 @@ function Login() {
               <button className="btn btn-custom-success" onClick={cadastrarTeste}>Criar conta</button>
             </div>
 
-
           </div>
         </div>
-
       </div>
     </>
   );

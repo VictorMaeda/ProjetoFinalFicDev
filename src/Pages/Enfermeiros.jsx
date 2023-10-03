@@ -10,8 +10,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ModalPlantoesEnfermeiro from '../EnfermeiroComponents/ModalPlantoesEnfermeiro';
 import { Pen, TrashSimple } from '@phosphor-icons/react';
 import Swal from 'sweetalert2';
+import { sessionValidate } from '../services/UserService';
 
 function Enfermeiros() {
+  sessionValidate();
   const [listaEnfermeiros, setListaEnfermeiros] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);

@@ -24,24 +24,22 @@ export async function loginService(email, senha) {
   }
 }
 
-
-
-
-export function sessionValidate() {
+export async function sessionValidate() {
+  const navigate = useNavigate();
   const accessToken = sessionStorage.getItem('token');
   try {
-    const response = api.get('/auth/validate', {
+    const response = await api.get('/auth/validate', {
       headers: {
         'Authorization': `Bearer ${JSON.parse(accessToken)}`
       }
     });
     if (response.status === 200) {
-      return true;
+      return;
     } else {
-      return false;
+    // navigate("/");
     }
   } catch (error) {
     console.error('Erro ao validar a sessão:', error);
-    return false;
+    // navigate("/");
   }
 }

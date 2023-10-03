@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import ColorSchemesExample from '../Components/ColorSchemesExample';
 import './DashBoard.css'
-import { sessionValidate } from '../services/UserService';
 import Grafico from '../DashBoardComponents/Grafico';
 import GraficoPizza from '../DashBoardComponents/GraficoPizza';
+import { sessionValidate } from '../services/UserService';
+import { useNavigate } from 'react-router';
 
 
 const DashBoard = () => {
-
-
+  
+    sessionValidate();
 
   return (
     <>
@@ -17,7 +18,6 @@ const DashBoard = () => {
         <div className='DivFlex'>
             <GraficoPizza />
         </div>
-      <button onClick={() => sessionValidate()}>SessionValidate()</button>
             <Grafico />
       </div>
     </>

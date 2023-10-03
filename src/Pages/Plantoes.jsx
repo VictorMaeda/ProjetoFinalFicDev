@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const Plantoes = () => {
-  //sessionValidate();
+  sessionValidate();
   const [listaEscalados, setEscalados] = useState([]);
   const [idPlantao, setIdPlantao] = useState(null);
   const [dataHoraPlantao, setDataHoraPlantao] = useState("");
