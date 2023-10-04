@@ -9,10 +9,11 @@ const Sobre = () => {
       <h3>Victor Maeda Chinen</h3>
       <h4>Gestão de Enfermeiro/Técnicos</h4>
       <h4>Curso Fic_dev programador de sistemas</h4>
-        <a href="https://github.com/VictorMaeda" className="GitHub"  >
-          <img src="/GitHub.png" className='imagemGit'/>
-        </a>
+      <a href="https://github.com/VictorMaeda" className="GitHub"  >
+        <img src="/GitHub.png" className='imagemGit' />
+      </a>
       <div className='logosDiv'>
+        <img src="/GitAws.png" className='Logos' alt="Logos" />
         <img src="/Logos.png" className='Logos' alt="Logos" />
       </div>
     </div>
