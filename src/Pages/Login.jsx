@@ -168,7 +168,10 @@ function Login() {
             src="\SpringMed.png"
           />
         </div>
-        <button onClick={() => navigate("/sobre")}>Menu</button>
+        <button onClick={() => navigate("/sobre")}>Sobre</button>
+        <button onClick={() => navigate("/Plantoes")}>plantoes</button>
+        <button onClick={() => navigate("/DashBoard")}>DashBoard</button>
+        <button onClick={() => navigate("/Enfermeiros")}>Enfermeiros</button>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-sm-12 col-md-6 col-lg-3 col-xl-3 mb-2">
